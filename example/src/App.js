@@ -1,10 +1,13 @@
 import React from 'react'
-
-import { ExampleComponent } from '@ejyption/react-file-upload'
+import FileUpload from '@ejyption/react-file-upload'
 import '@ejyption/react-file-upload/dist/index.css'
 
 const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
+  return (
+    <div className='wrapper'>
+      <FileUpload uploadURL='http://localhost:3000/upload/uploadFile' />
+    </div>
+  )
 }
 
 export default App

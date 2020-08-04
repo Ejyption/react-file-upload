@@ -1,0 +1,29 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  max-height: 300px;
+  padding-right: 10px;
+  margin-top: 10px;
+  overflow-y: auto;
+  transition-duration: 0.2s;
+  .inner {
+    position: relative;
+    transition-duration: 0.2s;
+  }
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #007cf0;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #007cf0;
+  }
+}

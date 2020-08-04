@@ -1,0 +1,33 @@
+/* add css module styles here (optional) */
+
+.wrapper {
+  width: 100%;
+  max-width: 422px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+  .inner {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border: 1px dashed rgba(0, 0, 0, 0.4);
+    box-shadow: 4px 4px 10px 1px rgba(0, 0, 0, 0.2);
+    transition-duration: 0.2s;
+    &.dragging {
+      background-color: #007cf02b;
+      box-shadow: 4px 4px 16px 1px rgba(0, 0, 0, 0.3);
+    }
+    .hidden-input {
+      display: none;
+    }
+    .prompt {
+      text-align: center;
+      color: #000000b0;
+    }
+  }
+}
