@@ -2,10 +2,10 @@ import React from 'react'
 import PropType from 'prop-types'
 import styles from './style.module.scss'
 
-const UploadButton = ({ onClick }) => {
+const UploadButton = ({ onClick, multiple }) => {
   return (
     <button type='button' onClick={onClick} className={styles.button}>
-      Add Files
+      {multiple ? 'Upload Files' : 'Upload File'}
     </button>
   )
 }

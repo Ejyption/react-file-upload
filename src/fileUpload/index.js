@@ -12,8 +12,8 @@ const FileUpload = ({
   removeFile,
   ind
 }) => {
+  const [adding, setAdding] = useState(true)
   const [removing, setRemoving] = useState(false)
-
   const { progress, locFile, savedFilename } = useFileUpload(file, uploadURL)
 
   useEffect(() => {
@@ -22,13 +22,20 @@ const FileUpload = ({
 
   const remove = () => {
     setRemoving(true)
-    setTimeout(() => removeFile(fileKey), 300)
+    setTimeout(() => removeFile(fileKey), 500)
   }
 
-  const className =
-    `${styles.wrapper} ` +
-    (removing ? `${styles.removing}` : `${styles.adding}`) +
-    (progress === 100 ? ` ${styles.fin}` : '')
+  useEffect(() => {
+    setAdding(true)
+    setTimeout(() => {
+      setAdding(false)
+    }, 300)
+  }, [file])
+
+  let className = `${styles.wrapper} `
+  if (adding) className += ` ${styles.adding}`
+  if (removing) className += ` ${styles.removing}`
+  if (progress === 100) className += ` ${styles.fin}`
 
   return (
     <div className={className} style={{ top: ind * 50 }}>

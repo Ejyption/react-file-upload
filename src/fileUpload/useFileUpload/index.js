@@ -8,6 +8,7 @@ export default function (file, uploadURL) {
 
   useEffect(() => {
     if (file) {
+      setProgress(0)
       var reader = new FileReader()
       reader.onloadend = (e) => setLocFile(e.target.result)
       reader.readAsDataURL(file)
@@ -26,7 +27,7 @@ export default function (file, uploadURL) {
         console.log(err)
       }
     }
-  }, [])
+  }, [file])
 
   return { progress, locFile, savedFilename }
 }

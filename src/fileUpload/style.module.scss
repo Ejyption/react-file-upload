@@ -12,14 +12,14 @@
   box-sizing: border-box;
   transition-duration: 0.2s;
   &.adding {
-    -webkit-animation-duration: 0.35s;
-    animation-duration: 0.35s;
+    -webkit-animation-duration: 0.6s;
+    animation-duration: 0.6s;
     -webkit-animation-name: bounceIn;
     animation-name: bounceIn;
   }
   &.removing {
-    -webkit-animation-duration: 0.35s;
-    animation-duration: 0.35s;
+    -webkit-animation-duration: 0.6s;
+    animation-duration: 0.6s;
     -webkit-animation-name: bounceOut;
     animation-name: bounceOut;
   }
@@ -75,14 +75,17 @@
       border-radius: 4px;
       overflow: hidden;
       z-index: 1;
-      transition-duration: 0.4s;
+      transition: 0.4s;
       .progressInner {
         height: 100%;
         border-radius: 4px;
-        transition-duration: 0.4s;
+        transition: width 0.4s;
         background-color: #007cf070;
       }
     }
+  }
+  &.fin .mid .progress .progressInner {
+    background-color: #13c613;
   }
 }
 

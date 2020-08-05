@@ -3,8 +3,9 @@ import UploadButton from './uploadButton'
 import FilesList from './filesList'
 import PropType from 'prop-types'
 import styles from './styles.module.scss'
+import PromptText from './promptText'
 
-const FileUpload = ({ uploadURL, fileTypes }) => {
+const FileUpload = ({ uploadURL, fileTypes, multiple }) => {
   const [fileKey, setFileKey] = useState(0)
   const [dragOver, setDragOver] = useState(false)
   const [files, setFiles] = useState([])
@@ -28,10 +29,21 @@ const FileUpload = ({ uploadURL, fileTypes }) => {
 
   const dragDropped = (e) => {
     dragFunction(e, false)
-    addFiles(e.dataTransfer.files)
+    if (multiple) addFiles(e.dataTransfer.files)
+    else addSingleFile(e.dataTransfer.files[0])
   }
+
   const inputNewFiles = (e) => {
-    addFiles(e.target.files)
+    if (multiple) addFiles(e.target.files)
+    else addSingleFile(e.target.files[0])
+  }
+
+  const addSingleFile = (inputFile) => {
+    setFiles([])
+    setSavedFiles([])
+    setFiles([{ file: inputFile, key: { fileKey } }])
+    setFileKey(fileKey + 1)
+    inputRef.current.value = null
   }
 
   const addFiles = (inputFiles) => {
@@ -47,6 +59,7 @@ const FileUpload = ({ uploadURL, fileTypes }) => {
   const addSavedFile = async (f) => {
     setSavedFiles((prev) => [...prev, f])
   }
+
   const removeSavedFile = (k) => {
     setFiles((f) => f.filter((a) => a.key !== k))
     setSavedFiles((sI) => sI.filter((a) => a.key !== k))
@@ -71,17 +84,14 @@ const FileUpload = ({ uploadURL, fileTypes }) => {
           className='hidden-input'
           type='file'
           accept='*'
-          multiple
+          multiple={multiple}
           hidden
         />
-        <UploadButton onClick={focus} />
-        <div className={styles.prompt} onClick={() => console.log(savedFiles)}>
-          Select one or more files from your computer, or drag and drop them
-          here
-        </div>
+        <UploadButton onClick={focus} multiple={multiple} />
+        <PromptText multiple={multiple} />
         <FilesList
-          uploadURL={uploadURL}
           files={files}
+          uploadURL={uploadURL}
           addSavedFile={addSavedFile}
           removeFile={removeSavedFile}
         />
@@ -91,10 +101,12 @@ const FileUpload = ({ uploadURL, fileTypes }) => {
 }
 
 FileUpload.defaultProps = {
-  propTypes: ['video', 'images', 'file']
+  propTypes: ['video', 'images', 'file'],
+  multiple: true
 }
 
 FileUpload.propTypes = {
+  multiple: PropType.bool,
   uploadURL: PropType.string.isRequired,
   fileTypes: PropType.arrayOf(PropType.string)
 }

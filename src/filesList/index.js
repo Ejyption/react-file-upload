@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect } from 'react'
-//import FileUpload from '../fileUpload'
 import styles from './style.module.scss'
 import FileUpload from './../fileUpload'
 
